@@ -2,11 +2,17 @@
 
 Bob - Backups and Builds Binary OBjects - ie all components in DINA-Web are backuped and built from scratch
 
-## Rationale
+## Usage
 
-By doing a git clone && make, all of DINA-Web can be backuped and sources pushed to Docker Hub
+All of DINA-Web repos w sources can be backuped into a single image with:
 
-## Deps
+		make
+
+That image is tagged with the date and can be pushed to Docker Hub with:
+
+		make push
+
+## Requirements
 
 For this to work, you need:
 
@@ -14,7 +20,3 @@ For this to work, you need:
 - docker-compose
 - git
 - make
-
-
-
-
