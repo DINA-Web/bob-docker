@@ -1,18 +1,20 @@
-NAME = dina/bob
+TS := $(shell date '+%Y_%m_%d')
+NAME = dina/bob:$(TS)
 VERSION = $(TRAVIS_BUILD_ID)
 ME = $(USER)
-TS := $(shell date '+%Y_%m_%d_%H_%M')
 
-all: build up
+all: init build
 
 init:
-	@echo "Pulling source code for dependencies..."
-	cd repos && get_repos.sh	
+	Rscript create_scripts.R
 
 build:
-	@echo "Building everything..."
+	@echo "Compiling docker image..."
 	docker build --tag $(NAME) .
-	#docker tag bf8b47d608a3 dina-web/bob
+
+report-bigfiles:
+	@echo "Finding big files"
+	docker run -it --rm dina/bob find /repos -size +10000k
 
 clean:
 	sudo rm -rf repos
