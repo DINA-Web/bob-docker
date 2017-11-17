@@ -22,7 +22,7 @@ repo_df <- function(x) {
   )
 }
 
-repos <- map_df(parsed, repo_df)
+repos <- unique(map_df(parsed, repo_df))
 
 clone_cmds <- c("#!/bin/bash", 
   paste0("git clone --depth=1 ", repos$url)
